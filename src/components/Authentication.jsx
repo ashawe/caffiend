@@ -47,6 +47,9 @@ export default function Authentication(props) {
                 case 'Firebase: Error (auth/invalid-credential).':
                     setError('Please enter a valid email, password pair.');
                     break;
+                case 'Firebase: Error (auth/invalid-email).':
+                    setError('Please enter a valid email address.');
+                    break;
                 default:
                     setError('An error occurred during authentication. Please try again.');
             }
