@@ -18,6 +18,8 @@ export default function Authentication(props) {
         console.log('Handling authentication for:', email)
         if (!email || !email.includes('@') || !password || password.length < 8) {
             console.log('Invalid email or password')
+            setError('Please enter a valid email and password (minimum 8 characters).');
+            setIsAuthenticating(false)
             return;
         }
 
@@ -38,8 +40,19 @@ export default function Authentication(props) {
             handleCloseModal()
 
         } catch (err) {
-            setError(err.message)
-            // console.log('Error during authentication:', err.message);
+            switch (err.message) {
+                case 'Firebase: Error (auth/email-already-in-use).':
+                    setError('This email is already in use. Please try logging in.');
+                    break;
+                case 'Firebase: Error (auth/invalid-credential).':
+                    setError('Please enter a valid email, password pair.');
+                    break;
+                default:
+                    setError('An error occurred during authentication. Please try again.');
+            }
+
+            // setError(err.message)
+            console.log('Error during authentication:', err.message);
         } finally {
             setIsAuthenticating(false)
         }
