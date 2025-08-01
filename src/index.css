@@ -257,7 +257,21 @@ footer {
   gap: 1rem;
 }
 
+.delete-modal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  height: 100%;
+}
 
+.delete-modal .button-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 100%;
+}
 
 
 @media (min-width: 640px) {
